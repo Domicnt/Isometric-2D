@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/grass.png-4fbe93c049f8a3de8e0ae802c6244a86.stex"
+path="res://.import/Lamp-unlit.png-3a5c39774d266dcc95e6422c7765627d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/tiles/grass.png"
-dest_files=[ "res://.import/grass.png-4fbe93c049f8a3de8e0ae802c6244a86.stex" ]
+source_file="res://Sprites/Lamp-unlit.png"
+dest_files=[ "res://.import/Lamp-unlit.png-3a5c39774d266dcc95e6422c7765627d.stex" ]
 
 [params]
 

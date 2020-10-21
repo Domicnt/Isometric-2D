@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rock_obstacle.png-fd6198cd3cddc397b37c32ae665d7220.stex"
+path="res://.import/Lamp-lit.png-d0f0bcb2440e048fa1085eef744f1572.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/tiles/rock_obstacle.png"
-dest_files=[ "res://.import/rock_obstacle.png-fd6198cd3cddc397b37c32ae665d7220.stex" ]
+source_file="res://Sprites/Lamp-lit.png"
+dest_files=[ "res://.import/Lamp-lit.png-d0f0bcb2440e048fa1085eef744f1572.stex" ]
 
 [params]
 
