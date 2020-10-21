@@ -7,6 +7,7 @@
 [ext_resource path="res://Sprites/Spotlight.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Lamp-lit.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/tree_1.png" type="Texture" id=7]
+[ext_resource path="res://interact_lamp.gd" type="Script" id=7]
 
 [sub_resource type="TileSet" id=1]
 2/name = "grass_1.png 2"
@@ -103,6 +104,7 @@ position = Vector2( -42, 70 )
 [node name="Lamp-lit" type="Sprite" parent="Torch"]
 position = Vector2( -8, 0 )
 texture = ExtResource( 6 )
+script = ExtResource( 7 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Torch/Lamp-lit"]
 show_behind_parent = true
