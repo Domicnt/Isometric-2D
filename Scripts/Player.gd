@@ -19,7 +19,7 @@ func _physics_process(delta):
 	
 	velocity = velocity.normalized();
 	#Velocity y element divided by 2 to match isometric tiles
-	velocity.y /= 2;
+	velocity.y /= 1.75;
 	velocity = move_and_slide(velocity * speed);
 	#look_at(get_global_mouse_position());
 	pass;
