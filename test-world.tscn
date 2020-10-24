@@ -61,13 +61,17 @@ extents = Vector2( 8, 2 )
 extents = Vector2( 9, 9 )
 
 [sub_resource type="ParticlesMaterial" id=8]
+emission_shape = 1
+emission_sphere_radius = 2.42
 flag_disable_z = true
-spread = 180.0
-gravity = Vector3( 0, -15, 0 )
-initial_velocity = 5.0
+direction = Vector3( 0, -1, 0 )
+spread = 20.0
+gravity = Vector3( 0, -100, 0 )
+initial_velocity = 60.56
 initial_velocity_random = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
+damping = 2.5
 color = Color( 0.87451, 0.392157, 0.223529, 1 )
 hue_variation = 0.22
 hue_variation_random = 0.4
@@ -184,6 +188,10 @@ texture = ExtResource( 12 )
 [node name="Particles2D" type="Particles2D" parent="YSort/Player/Torch"]
 position = Vector2( 0, -4 )
 amount = 50
+lifetime = 0.15
+explosiveness = 0.15
+randomness = 1.0
+local_coords = false
 process_material = SubResource( 8 )
 
 [node name="Light" type="Light2D" parent="YSort/Player/Torch"]
