@@ -3,8 +3,8 @@ extends KinematicBody2D
 var speed = 100;
 
 func _ready():
-	print("player position is: ")
-	print(position)
+	#print("player position is: ")
+	#print(position)
 	pass;
 	
 func _physics_process(delta):
