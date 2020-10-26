@@ -145,9 +145,8 @@ texture = ExtResource( 5 )
 texture_scale = 2.0
 range_item_cull_mask = 3
 shadow_enabled = true
-shadow_color = Color( 0, 0, 0, 1 )
 shadow_filter = 5
-shadow_filter_smooth = 20.0
+shadow_filter_smooth = 5.0
 
 [node name="Area2D" type="Area2D" parent="YSort/Lamp"]
 collision_layer = 3
@@ -201,15 +200,23 @@ position = Vector2( 0, -4 )
 z_index = -1
 texture = ExtResource( 5 )
 texture_scale = 2.0
-range_item_cull_mask = 524291
+range_item_cull_mask = 3
 shadow_enabled = true
-shadow_color = Color( 0, 0, 0, 1 )
 shadow_filter = 5
-shadow_filter_smooth = 10.0
+shadow_filter_smooth = 5.0
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( 0, 30 )
 process_material = SubResource( 8 )
 texture = ExtResource( 11 )
+
+[node name="Light2D" type="Light2D" parent="Particles2D"]
+texture = ExtResource( 5 )
+texture_scale = 0.5
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter = 5
+shadow_filter_smooth = 5.0
+shadow_item_cull_mask = 3
 [connection signal="body_entered" from="YSort/Lamp/Area2D" to="YSort/Lamp/Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="YSort/Lamp/Area2D" to="YSort/Lamp/Area2D" method="_on_Area2D_body_exited"]
