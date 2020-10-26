@@ -3,8 +3,8 @@ extends KinematicBody2D
 var speed = 100;
 
 func _ready():
-	print("player position is: ")
-	print(position)
+	#print("player position is: ")
+	#print(position)
 	pass;
 	
 func _physics_process(delta):
@@ -26,7 +26,7 @@ func _physics_process(delta):
 	#look_at(get_global_mouse_position());
 
 func _input(event):
-	print("player position is: ")
-	print(position)
+	#print("player position is: ")
+	#print(position)
 	pass;
 	
