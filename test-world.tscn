@@ -241,23 +241,28 @@ shadow_filter = 5
 shadow_filter_smooth = 5.0
 shadow_item_cull_mask = 3
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="YSort"]
+[node name="Enemy" type="KinematicBody2D" parent="YSort"]
 position = Vector2( 50, 20 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Enemy"]
 shape = SubResource( 9 )
 
-[node name="Particles2D" type="Particles2D" parent="YSort/KinematicBody2D"]
+[node name="Particles2D" type="Particles2D" parent="YSort/Enemy"]
 light_mask = 2
 amount = 58
 process_material = SubResource( 10 )
 texture = ExtResource( 10 )
 
-[node name="Light2D" type="Light2D" parent="YSort/KinematicBody2D"]
+[node name="Light2D" type="Light2D" parent="YSort/Enemy"]
 light_mask = 524288
 texture = ExtResource( 5 )
 energy = 0.75
 mode = 1
+shadow_item_cull_mask = 3
+
+[node name="Highlight" type="Light2D" parent="YSort/Enemy"]
+light_mask = 524288
+texture = ExtResource( 5 )
 shadow_item_cull_mask = 3
 
 [node name="Target" type="Position2D" parent="YSort"]
