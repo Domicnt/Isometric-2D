@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Sprites/Player.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://player_torch.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/ff_Target.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/Fireflies.gd" type="Script" id=15]
+[ext_resource path="res://dialogue.gd" type="Script" id=17]
 
 [sub_resource type="TileSet" id=1]
 2/name = "grass_1.png 2"
@@ -105,6 +106,9 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale_random = 1.0
 color = Color( 1, 0, 0, 0.0392157 )
+
+[sub_resource type="CircleShape2D" id=11]
+radius = 21.5
 
 [node name="World" type="Node2D"]
 light_mask = 1025
@@ -266,5 +270,31 @@ script = ExtResource( 7 )
 
 [node name="ff_Target" type="Position2D" parent="YSort"]
 script = ExtResource( 14 )
+
+[node name="Node2D" type="Node2D" parent="YSort"]
+position = Vector2( -30, -30 )
+
+[node name="Sprite" type="Sprite" parent="YSort/Node2D"]
+position = Vector2( 0, -17.684 )
+scale = Vector2( 0.489, 0.556 )
+texture = ExtResource( 8 )
+
+[node name="Area2D" type="Area2D" parent="YSort/Node2D"]
+script = ExtResource( 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Node2D/Area2D"]
+shape = SubResource( 11 )
+
+[node name="Text" type="RichTextLabel" parent="YSort/Node2D"]
+margin_right = 17.432
+margin_bottom = 30.0
+rect_clip_content = false
+text = "hi"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="body_entered" from="YSort/Lamp/Area2D" to="YSort/Lamp/Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="YSort/Lamp/Area2D" to="YSort/Lamp/Area2D" method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="YSort/Node2D/Area2D" to="YSort/Node2D/Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="YSort/Node2D/Area2D" to="YSort/Node2D/Area2D" method="_on_Area2D_body_exited"]
