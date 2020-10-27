@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var speed = 10;
-onready var target = get_node("../../Target")
+onready var target = get_node("../Target")
 var displacement: Vector2
 func _ready():
 	pass;
