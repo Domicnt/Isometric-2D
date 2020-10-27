@@ -182,12 +182,12 @@ visible = false
 visible = false
 shape = SubResource( 6 )
 
-[node name="Torch" type="Sprite" parent="YSort/Player"]
+[node name="Torch" type="Sprite" parent="YSort"]
 position = Vector2( 10, -12 )
 texture = ExtResource( 12 )
 script = ExtResource( 13 )
 
-[node name="Particles2D" type="Particles2D" parent="YSort/Player/Torch"]
+[node name="Particles2D" type="Particles2D" parent="YSort/Torch"]
 position = Vector2( 0, -4 )
 amount = 25
 lifetime = 0.15
@@ -196,7 +196,7 @@ randomness = 1.0
 local_coords = false
 process_material = SubResource( 7 )
 
-[node name="Light" type="Light2D" parent="YSort/Player/Torch"]
+[node name="Light" type="Light2D" parent="YSort/Torch"]
 light_mask = 524288
 position = Vector2( 0, -4 )
 z_index = -1
