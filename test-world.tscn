@@ -6,14 +6,14 @@
 [ext_resource path="res://Torch.gd" type="Script" id=4]
 [ext_resource path="res://Sprites/Spotlight.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Lamp-lit.png" type="Texture" id=6]
-[ext_resource path="res://Scripts/ff_Target.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Target.gd" type="Script" id=7]
 [ext_resource path="res://Sprites/tree_1.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/tiles/stone_1.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/Shadow.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/Firefly.png" type="Texture" id=11]
 [ext_resource path="res://Sprites/Torch.png" type="Texture" id=12]
 [ext_resource path="res://player_torch.gd" type="Script" id=13]
-[ext_resource path="res://Scripts/Target.gd" type="Script" id=14]
+[ext_resource path="res://Scripts/ff_Target.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/Fireflies.gd" type="Script" id=15]
 
 [sub_resource type="TileSet" id=1]
@@ -57,26 +57,13 @@ polygon = PoolVector2Array( 47.2564, 21.6436, 46.0989, 20.6965, 45.0115, 21.6436
 [sub_resource type="CircleShape2D" id=4]
 radius = 20.0
 
-[sub_resource type="ParticlesMaterial" id=5]
-flag_disable_z = true
-spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 10.0
-initial_velocity_random = 1.0
-orbit_velocity = 0.1
-orbit_velocity_random = 0.0
-tangential_accel = -5.0
-color = Color( 0.901961, 0.913725, 0.47451, 1 )
-hue_variation = 0.02
-hue_variation_random = 1.0
-
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 8, 2 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 9, 9 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=7]
 emission_shape = 1
 emission_sphere_radius = 2.0
 flag_disable_z = true
@@ -91,6 +78,19 @@ damping = 2.5
 color = Color( 0.87451, 0.392157, 0.223529, 1 )
 hue_variation = 0.22
 hue_variation_random = 0.4
+
+[sub_resource type="ParticlesMaterial" id=8]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.1
+orbit_velocity_random = 0.0
+tangential_accel = -5.0
+color = Color( 0.901961, 0.913725, 0.47451, 1 )
+hue_variation = 0.02
+hue_variation_random = 1.0
 
 [node name="World" type="Node2D"]
 light_mask = 1025
@@ -160,23 +160,6 @@ script = ExtResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Lamp/Area2D"]
 shape = SubResource( 4 )
 
-[node name="Fireflies" type="KinematicBody2D" parent="YSort"]
-position = Vector2( 0, 30 )
-script = ExtResource( 15 )
-
-[node name="Fireflies" type="Particles2D" parent="YSort/Fireflies"]
-process_material = SubResource( 5 )
-texture = ExtResource( 11 )
-
-[node name="Light2D" type="Light2D" parent="YSort/Fireflies/Fireflies"]
-texture = ExtResource( 5 )
-texture_scale = 0.5
-range_item_cull_mask = 3
-shadow_enabled = true
-shadow_filter = 5
-shadow_filter_smooth = 5.0
-shadow_item_cull_mask = 3
-
 [node name="Player" type="KinematicBody2D" parent="YSort"]
 script = ExtResource( 2 )
 
@@ -189,7 +172,7 @@ smoothing_speed = 10.0
 
 [node name="Collider" type="CollisionShape2D" parent="YSort/Player"]
 position = Vector2( 0, 6 )
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="YSort/Player"]
 light_mask = 2
@@ -200,7 +183,7 @@ visible = false
 
 [node name="Collider" type="CollisionShape2D" parent="YSort/Player/Hitbox"]
 visible = false
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="Torch" type="Sprite" parent="YSort"]
 position = Vector2( 10, -12 )
@@ -214,11 +197,11 @@ lifetime = 0.15
 explosiveness = 0.15
 randomness = 1.0
 local_coords = false
-process_material = SubResource( 8 )
+process_material = SubResource( 7 )
 
 [node name="Light" type="Light2D" parent="YSort/Torch"]
 light_mask = 524288
-position = Vector2( 10.6908, 8.02713 )
+position = Vector2( 0, -4 )
 z_index = -1
 texture = ExtResource( 5 )
 texture_scale = 2.0
@@ -227,12 +210,28 @@ shadow_enabled = true
 shadow_filter = 5
 shadow_filter_smooth = 5.0
 
+[node name="Fireflies" type="KinematicBody2D" parent="."]
+position = Vector2( 0, 30 )
+script = ExtResource( 15 )
+
+[node name="Particles2D" type="Particles2D" parent="Fireflies"]
+process_material = SubResource( 8 )
+texture = ExtResource( 11 )
+
+[node name="Light2D" type="Light2D" parent="Fireflies/Particles2D"]
+texture = ExtResource( 5 )
+texture_scale = 0.5
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter = 5
+shadow_filter_smooth = 5.0
+shadow_item_cull_mask = 3
+
 [node name="Target" type="Position2D" parent="."]
-position = Vector2( 13.5862, 4.45449 )
-script = ExtResource( 14 )
+position = Vector2( 0, 30 )
+script = ExtResource( 7 )
 
 [node name="ff_Target" type="Position2D" parent="."]
-position = Vector2( -19.377, 4.45448 )
-script = ExtResource( 7 )
+script = ExtResource( 14 )
 [connection signal="body_entered" from="YSort/Lamp/Area2D" to="YSort/Lamp/Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="YSort/Lamp/Area2D" to="YSort/Lamp/Area2D" method="_on_Area2D_body_exited"]

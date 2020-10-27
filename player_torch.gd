@@ -14,7 +14,7 @@ var startPosition
 # the position the torch is traveling to
 var throwPosition = null
 # throw speed
-var throwSpeed = 2
+var throwSpeed = 0.75
 # time for linear interpolation
 var t = 0
 
@@ -46,7 +46,7 @@ func _process(delta):
 			pass
 		state.THROW:
 			if(throwPosition != null):
-				t = delta * throwSpeed
+				t += delta * throwSpeed
 				position = position.linear_interpolate(throwPosition, t)
 				if(position == throwPosition):
 					currentState = state.DROPPED
