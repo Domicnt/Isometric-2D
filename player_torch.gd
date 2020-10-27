@@ -13,10 +13,14 @@ var currentState
 var startPosition
 # the position the torch is traveling to
 var throwPosition = null
+# throw speed
+var throwSpeed = 2
+# time for linear interpolation
+var t = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	follow_char = get_node("../../Player");
+	follow_char = get_node("../Player");
 	currentState = state.HOLD
 	startPosition = follow_char.position + position
 	print("torch position is: ")
@@ -31,21 +35,24 @@ func _process(delta):
 			currentState = state.THROW
 			var mousePos = get_global_mouse_position()
 			print(mousePos)
-			throwPosition = Vector2(position.x + mousePos.x, position.y + mousePos.y)
+			throwPosition = mousePos#Vector2(position.x + mousePos.x, position.y + mousePos.y)
 		else:
 			currentState = state.HOLD
 		print(currentState)
 	
 	match(currentState):
 		state.HOLD:
-			position = startPosition
+			position = follow_char.position + startPosition
 			pass
 		state.THROW:
 			if(throwPosition != null):
+				t = delta * throwSpeed
+				position = position.linear_interpolate(throwPosition, t)
 				if(position == throwPosition):
 					currentState = state.DROPPED
-			position = get_global_mouse_position()
+					t = 0
 		state.DROPPED:
+			
 			pass
 		_:
 			pass
