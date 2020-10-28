@@ -133,7 +133,7 @@ texture_scale = 50.0
 mode = 1
 range_z_min = -4096
 range_z_max = 4096
-range_item_cull_mask = 3
+range_item_cull_mask = 515
 shadow_item_cull_mask = 0
 
 [node name="YSort" type="YSort" parent="."]
@@ -245,28 +245,23 @@ shadow_filter = 5
 shadow_filter_smooth = 5.0
 shadow_item_cull_mask = 3
 
-[node name="Enemy" type="KinematicBody2D" parent="YSort"]
+[node name="KinematicBody2D" type="KinematicBody2D" parent="YSort"]
 position = Vector2( 50, 20 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Enemy"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/KinematicBody2D"]
 shape = SubResource( 9 )
 
-[node name="Particles2D" type="Particles2D" parent="YSort/Enemy"]
+[node name="Particles2D" type="Particles2D" parent="YSort/KinematicBody2D"]
 light_mask = 2
 amount = 58
 process_material = SubResource( 10 )
 texture = ExtResource( 10 )
 
-[node name="Light2D" type="Light2D" parent="YSort/Enemy"]
+[node name="Light2D" type="Light2D" parent="YSort/KinematicBody2D"]
 light_mask = 524288
 texture = ExtResource( 5 )
 energy = 0.75
 mode = 1
-shadow_item_cull_mask = 3
-
-[node name="Highlight" type="Light2D" parent="YSort/Enemy"]
-light_mask = 524288
-texture = ExtResource( 5 )
 shadow_item_cull_mask = 3
 
 [node name="Target" type="Position2D" parent="YSort"]
@@ -276,30 +271,49 @@ script = ExtResource( 7 )
 [node name="ff_Target" type="Position2D" parent="YSort"]
 script = ExtResource( 14 )
 
-[node name="Node2D" type="Node2D" parent="YSort"]
+[node name="NPC" type="Node2D" parent="YSort"]
 position = Vector2( -30, -30 )
 
-[node name="Sprite" type="Sprite" parent="YSort/Node2D"]
+[node name="Sprite" type="Sprite" parent="YSort/NPC"]
 position = Vector2( 0, -17.684 )
 scale = Vector2( 0.489, 0.556 )
 texture = ExtResource( 8 )
 
-[node name="Area2D" type="Area2D" parent="YSort/Node2D"]
+[node name="a" type="Area2D" parent="YSort/NPC"]
 script = ExtResource( 17 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Node2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/NPC/a"]
 shape = SubResource( 11 )
 
-[node name="Text" type="RichTextLabel" parent="YSort/Node2D"]
-margin_right = 17.432
-margin_bottom = 30.0
+[node name="Sprite2" type="Sprite" parent="YSort/NPC"]
+visible = false
+light_mask = 0
+position = Vector2( 0, -50 )
+scale = Vector2( 5.17, 2.5 )
+z_index = 1001
+texture = ExtResource( 10 )
+
+[node name="Text" type="RichTextLabel" parent="YSort/NPC/Sprite2"]
+margin_left = -8.0
+margin_top = -8.0
+margin_right = 99.0
+margin_bottom = 45.0
+rect_scale = Vector2( 0.15, 0.3 )
 rect_clip_content = false
-text = "hi"
+size_flags_vertical = 0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "text"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Sprite" type="Sprite" parent="YSort/NPC/Sprite2"]
+show_behind_parent = true
+light_mask = 512
+scale = Vector2( 1.05, 1.1 )
+texture = ExtResource( 10 )
 [connection signal="body_entered" from="YSort/Lamp/Area2D" to="YSort/Lamp/Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="YSort/Lamp/Area2D" to="YSort/Lamp/Area2D" method="_on_Area2D_body_exited"]
-[connection signal="body_entered" from="YSort/Node2D/Area2D" to="YSort/Node2D/Area2D" method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="YSort/Node2D/Area2D" to="YSort/Node2D/Area2D" method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="YSort/NPC/a" to="YSort/NPC/a" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="YSort/NPC/a" to="YSort/NPC/a" method="_on_Area2D_body_exited"]
