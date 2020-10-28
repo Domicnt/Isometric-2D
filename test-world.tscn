@@ -279,10 +279,10 @@ position = Vector2( 0, -17.684 )
 scale = Vector2( 0.489, 0.556 )
 texture = ExtResource( 8 )
 
-[node name="a" type="Area2D" parent="YSort/NPC"]
+[node name="1" type="Area2D" parent="YSort/NPC"]
 script = ExtResource( 17 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/NPC/a"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/NPC/1"]
 shape = SubResource( 11 )
 
 [node name="Sprite2" type="Sprite" parent="YSort/NPC"]
@@ -315,5 +315,5 @@ scale = Vector2( 1.05, 1.1 )
 texture = ExtResource( 10 )
 [connection signal="body_entered" from="YSort/Lamp/Area2D" to="YSort/Lamp/Area2D" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="YSort/Lamp/Area2D" to="YSort/Lamp/Area2D" method="_on_Area2D_body_exited"]
-[connection signal="body_entered" from="YSort/NPC/a" to="YSort/NPC/a" method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="YSort/NPC/a" to="YSort/NPC/a" method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="YSort/NPC/1" to="YSort/NPC/1" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="YSort/NPC/1" to="YSort/NPC/1" method="_on_Area2D_body_exited"]
